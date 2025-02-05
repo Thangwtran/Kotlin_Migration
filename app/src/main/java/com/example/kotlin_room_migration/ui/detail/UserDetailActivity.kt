@@ -16,4 +16,8 @@ class UserDetailActivity : AppCompatActivity() {
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
+    companion object{
+        const val USER_ID = "user_id"
+    }
 }

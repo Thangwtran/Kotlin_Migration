@@ -16,4 +16,8 @@ class UserUpdateActivity : AppCompatActivity() {
         biding = ActivityUserUpdateBinding.inflate(layoutInflater)
         setContentView(biding.root)
     }
+
+    companion object{
+        const val USER_ID = "user_id"
+    }
 }
