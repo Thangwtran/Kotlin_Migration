@@ -1,5 +1,6 @@
 package com.example.kotlin_room_migration.data.dao
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
@@ -7,6 +8,7 @@ import androidx.room.Update
 import com.example.kotlin_room_migration.data.model.User
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface UserDao {
     @Query("SELECT * FROM users")
     fun getAll(): Flow<List<User>>

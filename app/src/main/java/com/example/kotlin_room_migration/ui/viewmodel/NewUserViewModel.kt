@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 class NewUserViewModel(
     private val userRepository: UserRepository,
 ) : ViewModel() {
-
     fun saveUser(fullName: String, email: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.save(User(0, fullName, email))

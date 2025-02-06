@@ -1,19 +1,37 @@
 package com.example.kotlin_room_migration.ui.newuser
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.kotlin_room_migration.R
+import com.example.kotlin_room_migration.data.database.AppDatabase
+import com.example.kotlin_room_migration.data.repository.UserRepository
 import com.example.kotlin_room_migration.databinding.ActivityNewUserBinding
+import com.example.kotlin_room_migration.ui.viewmodel.NewUserViewModel
 
 class NewUserActivity : AppCompatActivity() {
-    private lateinit var biding: ActivityNewUserBinding
+    private lateinit var binding: ActivityNewUserBinding
+    private lateinit var viewmodel : NewUserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        biding = ActivityNewUserBinding.inflate(layoutInflater)
-        setContentView(biding.root)
+        binding = ActivityNewUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setupViewModel()
+        setupListener()
+    }
+    private fun setupViewModel() {
+        val database by lazy { AppDatabase.getDatabase(this) }
+        val repository by lazy { UserRepository(database.getUserDao()) }
+        viewmodel = NewUserViewModel(repository)
+    }
+    private fun setupListener() {
+        binding.btnAdd.setOnClickListener {
+            val email = binding.editEmail.text.toString()
+            val fullName = binding.editFullname.text.toString()
+            viewmodel.saveUser(fullName,email)
+            setResult(RESULT_OK, Intent())
+            finish()
+        }
+        binding.btnCancel.setOnClickListener { finish() }
     }
 }
