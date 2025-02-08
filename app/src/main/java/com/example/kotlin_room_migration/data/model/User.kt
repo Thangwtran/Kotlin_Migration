@@ -9,7 +9,7 @@ data class User(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "full_name") var fullName: String,
     @ColumnInfo(name = "email") var email: String,
-    @ColumnInfo(name = "display_name") var displayName:String = "Unknown",
+    @ColumnInfo(name = "display_name", defaultValue = "Unknown") var displayName:String = "Unknown" ,
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

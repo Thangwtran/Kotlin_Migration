@@ -32,6 +32,7 @@ class UserAdapter(
             this.user = user // assign user
             biding.textFullname.text = user.fullName
             biding.textEmail.text = user.email
+            biding.textDisplayName.text = user.displayName
         }
 
         private fun onOptionMenuClick() {

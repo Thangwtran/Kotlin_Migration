@@ -28,7 +28,8 @@ class NewUserActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
             val email = binding.editEmail.text.toString()
             val fullName = binding.editFullname.text.toString()
-            viewmodel.saveUser(fullName,email)
+            val displayName = binding.editDisplayName.text.toString()
+            viewmodel.saveUser(fullName,email,displayName)
             setResult(RESULT_OK, Intent())
             finish()
         }
