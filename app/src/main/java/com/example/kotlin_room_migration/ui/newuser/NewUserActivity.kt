@@ -22,7 +22,7 @@ class NewUserActivity : AppCompatActivity() {
     private fun setupViewModel() {
         val database by lazy { AppDatabase.getDatabase(this) }
         val repository by lazy { UserRepository(database.getUserDao()) }
-        viewmodel = NewUserViewModel(repository)
+        viewmodel = NewUserViewModel(repository) // should initialize by ViewModelProvider
     }
     private fun setupListener() {
         binding.btnAdd.setOnClickListener {
